@@ -308,8 +308,8 @@ function dragNdropHandler(e){
 
 // Функция перемещения объекта и позиционирования его по центру
 function dragMoveAt(e, el) {
-    el.style.left = e.pageX - el.offsetWidth / 2 + 'px';
-    el.style.top = e.pageY - el.offsetHeight / 2 + 'px';
+    el.style.left = e.clientX - el.offsetWidth / 2 + 'px';
+    el.style.top = e.clientY - el.offsetHeight / 2 + 'px';
 }
 
 // Функция обработчик, отслеживаем где отпустили объект и добавляем его в соотв. drop_zone

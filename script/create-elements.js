@@ -1,4 +1,6 @@
 let imgPath;
+let device = "pc";
+if (/iPad/i.test(navigator.userAgent)) device = "iPad";
 
 function createPopUpMain(question){
     if (question.image) imgPath = `content/quiz-images/type${question.type}`; 
@@ -110,7 +112,7 @@ function createBodyPopUp_Type0(question){
     elChB.appendChild(elChBChB);
     el.appendChild(elChB);
 
-    if (question.image != null) elChBChB.appendChild(createImgDiv_Type0(question));
+    if (question.image) elChBChB.appendChild(createImgDiv_Type0(question));
 
     elChBChB.appendChild(createAnswers_Type0(question));
 
@@ -683,7 +685,7 @@ function createResult(){
     let elChBChDChBChD = document.createElement("div");
     elChBChDChBChD.setAttribute("id", "result_count_questions");
 
-    let elChBChDChBChDChA = document.createTextNode(`${countQuestions}`);
+    let elChBChDChBChDChA = document.createTextNode(`${countAnswered}`);
 
     elChBChDChBChD.appendChild(elChBChDChBChDChA);
     elChBChDChB.appendChild(elChBChDChBChD);
@@ -696,7 +698,7 @@ function createResult(){
     elChBChDChD.appendChild(elChBChDChDChB);
     let elChBChDChDChD = document.createElement("div");
     elChBChDChDChD.setAttribute("id", "result_users_correct_answered");
-    let elChBChDChDChDChA = document.createTextNode(`${score}`);
+    let elChBChDChDChDChA = document.createTextNode(`${score} очков`);
     elChBChDChDChD.appendChild(elChBChDChDChDChA);
     elChBChDChD.appendChild(elChBChDChDChD);
     elChBChD.appendChild(elChBChDChD);
@@ -716,18 +718,7 @@ function createResult(){
     elChBChDChFChBChBChD.appendChild(elChBChDChFChBChBChDChA);
     elChBChDChFChBChB.appendChild(elChBChDChFChBChBChD);
     elChBChDChFChB.appendChild(elChBChDChFChBChB);
-    let elChBChDChFChBChD = document.createElement("div");
-    elChBChDChFChBChD.setAttribute("class", "result_wrong");
-    let elChBChDChFChBChDChB = document.createElement("div");
-    let elChBChDChFChBChDChBChA = document.createTextNode("Количество неправильных ответов:");
-    elChBChDChFChBChDChB.appendChild(elChBChDChFChBChDChBChA);
-    elChBChDChFChBChD.appendChild(elChBChDChFChBChDChB);
-    let elChBChDChFChBChDChD = document.createElement("div");
-    elChBChDChFChBChDChD.setAttribute("id", "result_wrongs_num");
-    let elChBChDChFChBChDChDChA = document.createTextNode(`${countAnswered - countCorrectAnswered}`);
-    elChBChDChFChBChDChD.appendChild(elChBChDChFChBChDChDChA);
-    elChBChDChFChBChD.appendChild(elChBChDChFChBChDChD);
-    elChBChDChFChB.appendChild(elChBChDChFChBChD);
+    
     elChBChDChF.appendChild(elChBChDChFChB);
     let elChBChDChFChD = document.createElement("div");
     elChBChDChFChD.setAttribute("class", "result_diagram");
@@ -739,12 +730,12 @@ function createResult(){
     let elChBChDChFChF = document.createElement("div");
     elChBChDChFChF.setAttribute("class", "result_corrects");
     let elChBChDChFChFChB = document.createElement("div");
-    let elChBChDChFChFChBChA = document.createTextNode("Количество вопросов без ответа:");
+    let elChBChDChFChFChBChA = document.createTextNode("Количество неправильных ответов:");
     elChBChDChFChFChB.appendChild(elChBChDChFChFChBChA);
     elChBChDChFChF.appendChild(elChBChDChFChFChB);
     let elChBChDChFChFChD = document.createElement("div");
     elChBChDChFChFChD.setAttribute("id", "result_corrects_num");
-    let elChBChDChFChFChDChA = document.createTextNode(`${countQuestions - countAnswered}`);
+    let elChBChDChFChFChDChA = document.createTextNode(`${countAnswered - countCorrectAnswered}`);
     elChBChDChFChFChD.appendChild(elChBChDChFChFChDChA);
     elChBChDChFChF.appendChild(elChBChDChFChFChD);
     elChBChDChF.appendChild(elChBChDChFChF);
